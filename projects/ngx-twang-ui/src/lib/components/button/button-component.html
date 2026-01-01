@@ -1,0 +1,8 @@
+<button 
+  [type]="type()"
+  [class]="buttonClasses()"
+  (click)="btnClick.emit($event)">
+  {{ label() }}
+
+  <ng-content></ng-content>
+</button>
