@@ -1,59 +1,117 @@
-# NgxTwangUiRepo
+# ngx-twang-ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+A collection of beautiful, accessible Angular components built with Tailwind CSS.
 
-## Development server
+## 🎨 Components
 
-To start a local development server, run:
+- **Button** - Customizable buttons with multiple variants
+- **Checkbox** - Accessible checkbox inputs
+- **Input** - Text input fields
+- **Textarea** - Multi-line text areas
+- **Dropdown** - Select dropdowns with search
+- **Sidebar** - Responsive navigation sidebar
+
+## Installation
+
+**From GitHub:**
 
 ```bash
+npm install git+https://https://github.com/rkapps/ngx-twang-ui-repo.git
+```
+
+**Local development:**
+
+```bash
+# Clone the repo
+git clone https://https://github.com/rkapps/ngx-twang-ui-repo.git
+
+# Link locally
+cd ngx-twang-ui-repo
+npm link
+
+# In your project
+npm link ngx-twang-ui
+start a continuous build processs
+ng build ngx-twang-ui --watch
+```
+
+## Create the application
+
+**1. Installation:**
+
+ng new my-app --style=css --routing
+cd my-app
+
+**2. Install the components library:**
+npm install ../ngx-twang-ui-repo/dist/ngx-twang-ui
+
+update the styles.css
+@source "../node_modules/ngx-twang-ui/**/*.{html,ts}";
+
+update the angular.json to add preserveSymlinks:true
+"my-app": {
+    "architect": {
+      "build": {
+        "options": {
+          "preserveSymlinks": true
+        }
+      }
+    }
+  }
+
+  update the "serve" with
+   "options": {
+            "prebundle": {
+              "exclude": [
+                "ngx-t
+                wang-ui"
+              ]
+            }
+          }
+
+**3. Install tailwind css and conifigure:**
+npm install tailwindcss@next
+
+**4. Update styles.css:**
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "./**/*.{html,ts}";
+
+**4. Update the app.config to add Component input biinding:**
+Update the config file
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+  ]
+}
+
+**5. Create the component and add the imports:**
+@Component({
+    selector: 'app-new-page',
+    imports: [Field, TwangButtonComponent, TwangTextareaComponent, TwangDropDownComponent, TwangInputComponent, TwangCheckboxComponent],
+    templateUrl: './new-page.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+
+})
+export class NewChatComponent {
+}
+
+**6. Add to html:**
+<twang-dropdown label="Llms" (change)="onLlmProviderSelected($event)" [nodes]="llmNodes()"/>
+<twang-checkbox type="checkbox" [field]="chatForm.stream" label="Stream" />
+<twang-textarea label="System Prompt" [field]="chatForm.system" [rows]="15" placeholder="Enter the System prompt or instructions..."/>
+<twang-button type="submit" [disabled]="chatForm().invalid()" label="Create Chat" />
+
+Serve the app
 ng serve
-```
+or
+rm -rf .angular/cache ng serve
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## License
 
-## Code scaffolding
+MIT
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
