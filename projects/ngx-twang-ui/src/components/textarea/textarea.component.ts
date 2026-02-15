@@ -1,4 +1,4 @@
-import { Component, model, input, computed } from '@angular/core';
+import { Component, model, input, computed, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormValueControl } from '@angular/forms/signals';
 
@@ -22,6 +22,7 @@ export class TwangTextareaComponent implements FormValueControl<string>{
   value = model<string>('');
   disabled = input<boolean>(false);
   size = input<'sm' | 'md' | 'lg'>('md');
+  enter = output();
 
 
   inputClasses = computed(() => {
@@ -50,5 +51,15 @@ export class TwangTextareaComponent implements FormValueControl<string>{
 
   });
 
+
+
+  handleEnter(event: any) {
+    console.log("reached");
+    // Submit only if Enter is pressed without the Shift key
+    if (!event.shiftKey) {
+      event.preventDefault(); // Prevents the newline character in textarea
+      this.enter.emit();
+    }
+}  
   
 }

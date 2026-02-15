@@ -14,6 +14,7 @@ import { LucideAngularModule } from "lucide-angular";
 
 export class TwangButtonComponent {
 
+
     // 1. Define Signal-based inputs
     variant = input<'primary' | 'secondary' | 'accent' | 'outline' | 'default'>('primary');
     size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
@@ -23,6 +24,8 @@ export class TwangButtonComponent {
     disabled = input<boolean>(false);
     icon = input<string>('');
 
+    isLoading = input<boolean>(false);
+    loadingClass = this.isLoading() ? 'cursor-wait opacity-70 pointer-events-none  ' : '';
 
     // 2. Create the "function" that returns the class string
     // This only re-runs when variant(), size(), or isFluid() changes.
@@ -73,8 +76,9 @@ export class TwangButtonComponent {
 
         const fluidClass = this.isFluid() ? 'twang-btn-fluid' : '';
 
-        return `${baseClass} ${variantMaps[this.variant()]} ${sizeMaps[this.size()]} ${fluidClass} ${disabledClass}`.trim();
+        return `${baseClass} ${variantMaps[this.variant()]} ${sizeMaps[this.size()]} ${fluidClass} ${disabledClass} ${this.loadingClass}`.trim();
     });
+
 
     btnClick = output<MouseEvent>();
 

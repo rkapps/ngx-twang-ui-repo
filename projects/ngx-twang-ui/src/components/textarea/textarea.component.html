@@ -13,6 +13,7 @@
       [placeholder]="placeholder()"
       [value]="value()"
       (input)="value.set($any($event.target).value)"
+      (keydown.enter)="handleEnter($any($event))"
       [class]="inputClasses()"
     ></textarea>
   
