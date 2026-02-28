@@ -17,7 +17,7 @@ export class TwangButtonComponent {
 
     // 1. Define Signal-based inputs
     variant = input<'primary' | 'secondary' | 'accent' | 'outline' | 'default'>('primary');
-    size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
+    size = input<'xs' | 'sm' | 'md' | 'lg'>('sm');
     isFluid = input<boolean>(false);
     type = input<'button' | 'submit' | 'reset'>('button');
     label = input<string>('');
