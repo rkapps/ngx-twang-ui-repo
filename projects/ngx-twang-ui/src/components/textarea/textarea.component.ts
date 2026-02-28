@@ -54,7 +54,6 @@ export class TwangTextareaComponent implements FormValueControl<string>{
 
 
   handleEnter(event: any) {
-    console.log("reached");
     // Submit only if Enter is pressed without the Shift key
     if (!event.shiftKey) {
       event.preventDefault(); // Prevents the newline character in textarea
